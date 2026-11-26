@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nusantara Stride</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        /* ==========================
+           RESET & BASE
+        ========================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ==========================
+           NAVBAR
+        ========================== */
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-brand .brand-text {
+            line-height: 1.2;
+        }
+
+        .navbar-brand .brand-text small {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+        }
+
+        .navbar-nav .nav-link {
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #ffc107;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar-nav .nav-link:hover::after,
+        .navbar-nav .nav-link.active::after {
+            width: 60%;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffc107 !important;
+        }
+
+        /* ==========================
+           HERO - PARALLAX
+        ========================== */
+        #hero {
+            padding: 120px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 50%, #ffc107 100%);
+        }
+
+        /* Parallax Background */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffc107" fill-opacity="0.08"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform;
+        }
+
+        #hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero h1 {
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        #hero p {
+            color: #555;
+            font-size: 18px;
+        }
+
+        /* ==========================
+           PARALLAX ELEMENTS
+        ========================== */
+        .parallax-shape {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .parallax-shape-1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 193, 7, 0.1);
+            top: -100px;
+            right: -50px;
+        }
+
+        .parallax-shape-2 {
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 193, 7, 0.08);
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .parallax-shape-3 {
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 193, 7, 0.06);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* ==========================
+           SECTION TITLE
+        ========================== */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #ffc107;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .section-title:hover::after {
+            width: 100px;
+        }
+
+        .text-center .section-title::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* ==========================
+           ABOUT
+        ========================== */
+        #about {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 35px 20px;
+            border-radius: 16px;
+            transition: all 0.4s ease;
+            background: #f8f9fa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #ffc107, #f9a825);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 16px;
+        }
+
+        .feature:hover::before {
+            opacity: 0.05;
+        }
+
+        .feature:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 193, 7, 0.2);
+        }
+
+        .feature i {
+            font-size: 3.5rem;
+            color: #ffc107;
+            margin-bottom: 15px;
+            transition: transform 0.4s ease;
+        }
+
+        .feature:hover i {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .feature h4 {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* ==========================
+           PRODUK
+        ========================== */
+        #produk {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .product-card {
+            transition: all 0.4s ease;
+            border-radius: 16px !important;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #ffc107, #f9a825);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+            border-radius: 16px;
+        }
+
+        .product-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .product-card .card-img-top {
+            height: 250px;
+            object-fit: contain;
+            padding: 20px;
+            background: #f8f9fa;
+            transition: transform 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card:hover .card-img-top {
+            transform: scale(1.08);
+        }
+
+        .product-card .card-body,
+        .product-card .card-footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(255, 193, 7, 0.2) !important;
+        }
+
+        .product-card .card-footer {
+            background: transparent !important;
+            padding: 15px 20px 20px;
+        }
+
+        .product-card .btn-warning {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card .btn-warning::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .product-card .btn-warning:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .product-card .btn-warning:hover {
+            background: #f9a825;
+            transform: scale(1.05);
+        }
+
+        /* ==========================
+           GALLERY
+        ========================== */
+        #gallery {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 16px;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.06) rotate(-1deg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .gallery-wrapper::after {
+            content: '\F4F4';
+            font-family: 'bootstrap-icons';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 3rem;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            opacity: 0;
+        }
+
+        .gallery-wrapper:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        /* ==========================
+           FAQ
+        ========================== */
+        #faq {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .accordion-item {
+            border: none;
+            border-radius: 16px !important;
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 8px 30px rgba(255, 193, 7, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .accordion-button {
+            font-weight: 600;
+            padding: 20px 25px;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: #ffc107;
+            color: #000;
+            font-weight: 700;
+        }
+
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.3);
+        }
+
+        .accordion-button::after {
+            transition: transform 0.3s ease;
+        }
+
+        /* ==========================
+           TESTIMONI
+        ========================== */
+        #testimoni {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+
+        #testimoni .card {
+            border-radius: 16px !important;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #testimoni .card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 10px;
+            font-size: 100px;
+            color: rgba(255, 193, 7, 0.1);
+            font-family: Georgia, serif;
+        }
+
+        #testimoni .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 193, 7, 0.15) !important;
+        }
+
+        #testimoni .card .text-warning {
+            transition: all 0.3s ease;
+        }
+
+        #testimoni .card:hover .text-warning {
+            transform: scale(1.1);
+        }
+
+        /* ==========================
+           CONTACT
+        ========================== */
+        #contact {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        #contact .form-control {
+            border-radius: 12px;
+            padding: 14px 18px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        #contact .form-control:focus {
+            border-color: #ffc107;
+            box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.2);
+            transform: scale(1.01);
+        }
+
+        #contact .btn-warning {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contact .btn-warning:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.3);
+        }
+
+        #contact .border-start {
+            border-color: #dee2e6 !important;
+            padding-left: 40px;
+        }
+
+        #contact .bi {
+            color: #ffc107;
+            transition: all 0.3s ease;
+        }
+
+        #contact .d-flex:hover .bi {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        #contact .d-flex {
+            transition: all 0.3s ease;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        #contact .d-flex:hover {
+            background: rgba(255, 193, 7, 0.05);
+        }
+
+        /* ==========================
+           FOOTER
+        ========================== */
+        footer {
+            background: #1a1a2e !important;
+        }
+
+        footer a {
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffc107 !important;
+            transform: translateX(5px);
+            display: inline-block;
+        }
+
+        footer .bi {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        footer .bi:hover {
+            color: #ffc107 !important;
+            transform: translateY(-5px) scale(1.2);
+        }
+
+        footer ul li {
+            transition: all 0.3s ease;
+        }
+
+        footer ul li:hover {
+            transform: translateX(5px);
+        }
+
+        /* ==========================
+           SCROLLSPY
+        ========================== */
+        .navbar-nav .nav-link.active {
+            color: #ffc107 !important;
+            font-weight: 600;
+        }
+
+        /* ==========================
+           RESPONSIVE
+        ========================== */
+        @media (max-width: 992px) {
+            #hero {
+                padding: 80px 0;
+                min-height: auto;
+                text-align: center;
+            }
+
+            #hero .hero-image {
+                margin-top: 30px;
+            }
+
+            #contact .border-start {
+                border-left: none !important;
+                padding-left: 0 !important;
+                padding-top: 40px;
+                border-top: 2px solid #dee2e6 !important;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .parallax-shape {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand .brand-text small {
+                font-size: 0.5rem;
+            }
+
+            #hero h1 {
+                font-size: 2rem;
+            }
+
+            #hero p {
+                font-size: 16px;
+            }
+
+            .feature {
+                padding: 25px 15px;
+            }
+
+            .product-card .card-img-top {
+                height: 200px;
+            }
+
+            .gallery-img {
+                height: 180px;
+            }
+
+            #contact .btn-warning {
+                width: 100%;
+            }
+        }
+
+        /* ==========================
+           AOS OVERRIDE
+        ========================== */
+        [data-aos] {
+            pointer-events: none;
+        }
+
+        [data-aos].aos-animate {
+            pointer-events: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm" id="navbar">
+        <div class="container">
+
+            <a class="navbar-brand fw-bold" href="#">
+                <span class="text-warning fs-1 fw-bold">N</span>
+                <span class="brand-text">
+                    <div class="fw-bold">NUSANTARA</div>
+                    <div class="text-warning" style="font-size: 0.65rem; letter-spacing: 2px;">STRIDE</div>
+                </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#produk">Produk</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimoni">Testimoni</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+
+                <a href="#" class="btn btn-warning text-white px-4">
+                    <i class="bi bi-cart"></i> Belanja
+                </a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ================= HERO - PARALLAX ================= -->
+    <section id="hero">
+        <!-- Parallax Shapes -->
+        <div class="parallax-shape parallax-shape-1" data-aos="fade-down" data-aos-duration="1000"></div>
+        <div class="parallax-shape parallax-shape-2" data-aos="fade-up" data-aos-duration="1000"></div>
+        <div class="parallax-shape parallax-shape-3" data-aos="zoom-in" data-aos-duration="1500"></div>
+
+        <div class="container">
+            <div class="row align-items-center g-4">
+
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                    <span class="badge bg-warning text-dark px-3 py-2 mb-3">🔥 UMKM Terpercaya</span>
+                    <h1 class="display-4 fw-bold">
+                        LANGKAH NYAMAN, <br>
+                        <span class="text-warning">GAYA MAKSIMAL.</span>
+                    </h1>
+                    <p class="lead text-secondary mt-3">
+                        Temukan berbagai koleksi sepatu berkualitas untuk olahraga,
+                        casual, dan aktivitas sehari-hari dengan harga terbaik.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap mt-4">
+                        <a href="#produk" class="btn btn-warning btn-lg px-5 text-white shadow">
+                            <i class="bi bi-box-seam"></i> Lihat Produk
+                        </a>
+                        <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-outline-dark btn-lg px-4">
+                            <i class="bi bi-whatsapp"></i> Hubungi Kami
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 text-center hero-image" data-aos="fade-left" data-aos-duration="1000">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop"
+     alt="Sepatu Running"
+     class="img-fluid"
+     style="max-height: 350px;">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about">
+        <div class="container">
+            <div class="text-center" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="section-title">ABOUT US</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">
+                    Nusantara Stride merupakan UMKM yang bergerak di bidang penjualan sepatu berkualitas
+                    dengan harga terjangkau.
+                </p>
+            </div>
+
+            <div class="row mt-5 g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                    <div class="feature">
+                        <i class="bi bi-award"></i>
+                        <h4>Kualitas Terbaik</h4>
+                        <p>Produk pilihan berkualitas.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                    <div class="feature">
+                        <i class="bi bi-tags"></i>
+                        <h4>Harga Terjangkau</h4>
+                        <p>Harga bersahabat.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+                    <div class="feature">
+                        <i class="bi bi-headset"></i>
+                        <h4>Pelayanan Ramah</h4>
+                        <p>Kepuasan pelanggan prioritas kami.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= PRODUK ================= -->
+    <section id="produk" class="py-5">
+        <div class="container">
+
+            <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="section-title">PRODUK KAMI</h2>
+                <p class="text-muted">Temukan berbagai koleksi sepatu terbaik pilihan kami.</p>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                    <div class="card product-card h-100 shadow-sm border-0">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop"
+     class="card-img-top" alt="Running Shoes">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Running Shoes</h5>
+                            <p class="text-muted">Nyaman digunakan untuk olahraga maupun aktivitas sehari-hari.</p>
+                            <h4 class="text-warning fw-bold">Rp299.000</h4>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <button class="btn btn-warning w-100 text-white">
+                                <i class="bi bi-cart-plus"></i> Beli Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                    <div class="card product-card h-100 shadow-sm border-0">
+                        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=800&auto=format&fit=crop"
+     class="card-img-top" alt="Sneakers Casual">
+                        <div class="card-body">
+                            <h5 class="fw-bold">Sneakers Casual</h5>
+                            <p class="text-muted">Cocok digunakan untuk gaya santai setiap hari.</p>
+                            <h4 class="text-warning fw-bold">Rp349.000</h4>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <button class="btn btn-warning text-white w-100">
+                                <i class="bi bi-cart-plus"></i> Beli Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+                    <div class="card product-card h-100 shadow-sm border-0">
+                        <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=800&auto=format&fit=crop"
+     class="card-img-top" alt="Sport Shoes">
+                        <div class="card-body">
+                            <h5 class="fw-bold">Sport Shoes</h5>
+                            <p class="text-muted">Ringan, kuat, dan nyaman dipakai sepanjang hari.</p>
+                            <h4 class="text-warning fw-bold">Rp399.000</h4>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <button class="btn btn-warning text-white w-100">
+                                <i class="bi bi-cart-plus"></i> Beli Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= GALLERY ================= -->
+    <section id="gallery" class="py-5">
+        <div class="container">
+
+            <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="section-title">GALLERY</h2>
+                <p class="text-muted">Dokumentasi produk dan aktivitas Nusantara Stride.</p>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="800">
+                    <div class="gallery-wrapper">
+                        <img src="https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?w=800&auto=format&fit=crop"
+     class="img-fluid rounded shadow gallery-img" alt="Gallery Sepatu 1">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="800">
+                    <div class="gallery-wrapper">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop"
+     class="img-fluid rounded shadow gallery-img" alt="Gallery Sepatu 2">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="800">
+                    <div class="gallery-wrapper">
+                        <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=800&auto=format&fit=crop"
+     class="img-fluid rounded shadow gallery-img" alt="Gallery Sepatu 3">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="800">
+                    <div class="gallery-wrapper">
+                        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=800&auto=format&fit=crop"
+     class="img-fluid rounded shadow gallery-img" alt="Gallery Sepatu 4">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section id="faq" class="py-5">
+        <div class="container">
+
+            <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="section-title">FAQ</h2>
+                <p class="text-muted">Pertanyaan yang sering diajukan pelanggan.</p>
+            </div>
+
+            <div class="accordion mx-auto" id="faqAccordion" style="max-width: 800px;">
+
+                <div class="accordion-item" data-aos="fade-up" data-aos-delay="100" data-aos-duration="600">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Apakah produk original?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Ya. Semua produk yang kami jual memiliki kualitas terbaik dan telah melalui proses pengecekan sebelum dikirim.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item" data-aos="fade-up" data-aos-delay="200" data-aos-duration="600">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Berapa lama pengiriman?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Pengiriman sekitar 2–5 hari kerja tergantung lokasi tujuan.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item" data-aos="fade-up" data-aos-delay="300" data-aos-duration="600">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Apakah bisa COD?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Ya, COD tersedia untuk beberapa wilayah tertentu.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= TESTIMONI ================= -->
+    <section id="testimoni" class="py-5">
+        <div class="container">
+
+            <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="section-title">TESTIMONI</h2>
+                <p class="text-muted">Apa kata pelanggan kami.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                    <div class="card border-0 shadow h-100">
+                        <div class="card-body">
+                            <div class="mb-3 text-warning fs-5">★★★★★</div>
+                            <p>"Sepatunya nyaman dipakai, kualitasnya bagus, pengiriman cepat."</p>
+                            <hr>
+                            <h5 class="mb-0">Andi Saputra</h5>
+                            <small class="text-muted">Pelanggan</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                    <div class="card border-0 shadow h-100">
+                        <div class="card-body">
+                            <div class="mb-3 text-warning fs-5">★★★★★</div>
+                            <p>"Harga sangat terjangkau dibanding kualitasnya. Recommended."</p>
+                            <hr>
+                            <h5 class="mb-0">Siti Nurhaliza</h5>
+                            <small class="text-muted">Pelanggan</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+                    <div class="card border-0 shadow h-100">
+                        <div class="card-body">
+                            <div class="mb-3 text-warning fs-5">★★★★★</div>
+                            <p>"Pelayanannya ramah, produknya juga sangat nyaman digunakan."</p>
+                            <hr>
+                            <h5 class="mb-0">Budi Santoso</h5>
+                            <small class="text-muted">Pelanggan</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="py-5">
+        <div class="container">
+
+            <div class="row align-items-start">
+
+                <div class="col-lg-7" data-aos="fade-right" data-aos-duration="800">
+                    <h2 class="fw-bold mb-4">CONTACT US</h2>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Nama Lengkap" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="email" class="form-control" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="tel" class="form-control" placeholder="Nomor WhatsApp" required>
+                        </div>
+                        <div class="mb-4">
+                            <textarea class="form-control" rows="6" placeholder="Pesan" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-warning px-5 py-3 text-white">
+                            <i class="bi bi-send"></i> Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+
+                <div class="col-lg-5" data-aos="fade-left" data-aos-duration="800">
+                    <div class="ps-lg-5 border-start">
+
+                        <div class="d-flex mb-4">
+                            <i class="bi bi-geo-alt-fill fs-1 me-4"></i>
+                            <div>
+                                <h4 class="fw-bold">Lokasi</h4>
+                                <p class="mb-0">Jl. Contoh No.123, Kota Palu, Sulawesi Tengah</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex mb-4">
+                            <i class="bi bi-whatsapp fs-1 me-4"></i>
+                            <div>
+                                <h4 class="fw-bold">WhatsApp</h4>
+                                <p class="mb-0">+62 812-3456-7890</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex mb-4">
+                            <i class="bi bi-envelope-fill fs-1 me-4"></i>
+                            <div>
+                                <h4 class="fw-bold">Email</h4>
+                                <p class="mb-0">nusantarastride@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex">
+                            <i class="bi bi-clock-fill fs-1 me-4"></i>
+                            <div>
+                                <h4 class="fw-bold">Jam Operasional</h4>
+                                <p class="mb-1">Senin - Sabtu : 08.00 - 21.00</p>
+                                <p>Minggu : 09.00 - 17.00</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="fw-bold">NUSANTARA STRIDE</h3>
+                    <p>Menyediakan berbagai sepatu berkualitas untuk menemani setiap langkahmu.</p>
+                </div>
+
+                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <h5>Menu</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#hero" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="#about" class="text-white text-decoration-none">About</a></li>
+                        <li><a href="#produk" class="text-white text-decoration-none">Produk</a></li>
+                        <li><a href="#gallery" class="text-white text-decoration-none">Gallery</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <h5>Follow Us</h5>
+                    <div class="fs-3">
+                        <i class="bi bi-facebook me-3"></i>
+                        <i class="bi bi-instagram me-3"></i>
+                        <i class="bi bi-twitter-x me-3"></i>
+                        <i class="bi bi-whatsapp"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr>
+            <p class="text-center mb-0">&copy; 2026 Nusantara Stride. All Rights Reserved.</p>
+
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+
+    <!-- Custom JS -->
+    <script>
+        // ==========================
+        // INIT AOS
+        // ==========================
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true,
+            offset: 80
+        });
+
+        // ==========================
+        // SCROLLSPY ACTIVE NAV
+        // ==========================
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+            function updateActiveLink() {
+                let current = '';
+                const scrollY = window.pageYOffset;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    const sectionHeight = section.offsetHeight;
+
+                    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink();
+        });
+
+        // ==========================
+        // PARALLAX SCROLLING
+        // ==========================
+        document.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.getElementById('hero');
+
+            if (hero) {
+                // Parallax for shapes
+                const shapes = document.querySelectorAll('.parallax-shape');
+                shapes.forEach((shape, index) => {
+                    const speed = 0.2 + (index * 0.1);
+                    const yPos = -(scrolled * speed);
+                    shape.style.transform = 'translateY(' + yPos + 'px)';
+                });
+
+                // Parallax for hero background
+                const heroBg = hero.querySelector('::before');
+                if (heroBg) {
+                    const bgPos = -(scrolled * 0.3);
+                    hero.style.backgroundPosition = '0 ' + bgPos + 'px';
+                }
+            }
+        });
+
+        // ==========================
+        // SMOOTH SCROLL
+        // ==========================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navbarHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ==========================
+        // NAVBAR COLLAPSE ON CLICK
+        // ==========================
+        const navLinksCollapse = document.querySelectorAll('.navbar-nav .nav-link');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+
+        navLinksCollapse.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navbarCollapse.classList.contains('show')) {
+                    const toggler = document.querySelector('.navbar-toggler');
+                    toggler.click();
+                }
+            });
+        });
+
+        console.log('✅ Nusantara Stride loaded successfully!');
+        console.log('✨ Effects: AOS, Scrollspy, Parallax, Hover Animations');
+    </script>
+
+</body>
+
+</html>
